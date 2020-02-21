@@ -11,12 +11,15 @@ import com.syscho.mockito.vo.Employee;
 @Service
 public class EmployeService {
 
-
 	@Autowired
 	EmployeeDAO empDAO;
 
 	public List<Employee> getEmployees() {
 		return empDAO.getEmpList();
+	}
+
+	public Employee addEmployee(Employee employee) {
+		return empDAO.addEmployee(employee);
 	}
 
 }

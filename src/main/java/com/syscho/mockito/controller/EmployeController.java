@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +24,21 @@ public class EmployeController {
 	public ResponseEntity<?> getEmployees() {
 
 		List<Employee> employees = service.getEmployees();
-
 		return sendReponse(employees);
-		// ResponseEntity.status(HttpStatus.OK).body(employees);
+	}
 
+	@PostMapping("/add")
+	public ResponseEntity<?> addEmployee(Employee employee) {
+
+		Employee object = service.addEmployee(employee);
+		ResponseEntity<?> body = null;
+		if (object == null) {
+			body = ResponseEntity.status(HttpStatus.BAD_REQUEST).body(object);
+		} else {
+			body = ResponseEntity.status(HttpStatus.OK).body(object);
+
+		}
+		return body;
 	}
 
 	private ResponseEntity<?> sendReponse(Object object) {
@@ -34,14 +46,13 @@ public class EmployeController {
 		ResponseEntity<?> body = null;
 		List<?> response = null;
 		if (object instanceof List) {
-			System.out.println("EmployeController.sendReponse()");
 			response = (List<?>) object;
 			if (response.size() == 0) {
 				response = null;
 			}
 		}
 
-		if (null == response) {
+		if (null == object) {
 			body = ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
 
 		} else {
