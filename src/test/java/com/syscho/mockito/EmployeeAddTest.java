@@ -40,16 +40,14 @@ public class EmployeeAddTest {
 	/** The mapper. */
 	@Autowired
 	private ObjectMapper mapper;
-
+	
 	/**
-	 * Gets the claim return error.
+	 * Adds the emp return null.
 	 *
-	 * @return the claim return error
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
-	public void getClaimReturnError() throws Exception {
+	public void addEmpReturnNull() throws Exception {
 
 		Employee mockpayload = new Employee("4", "jack");
 
@@ -65,14 +63,12 @@ public class EmployeeAddTest {
 	}
 
 	/**
-	 * Gets the claim return data.
+	 * Adds the emp return data.
 	 *
-	 * @return the claim return data
-	 * @throws Exception
-	 *             the exception
+	 * @throws Exception the exception
 	 */
 	@Test
-	public void getClaimReturnData() throws Exception {
+	public void addEmpReturnData() throws Exception {
 
 		Employee mockpayload = new Employee("4", "jack");
 
